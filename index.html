@@ -1,744 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Voice Of Victor — Bringing Words to Life</title>
+<meta name="description" content="Voice Of Victor — deep, clear, impactful voiceover artistry for commercials, narration, audiobooks, corporate and announcements." />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<!-- Google Fonts: Fraunces (display) + Plus Jakarta Sans (body/UI) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          ink: '#06060D',
-          ink2: '#0B0C18',
-          panel: '#12132A',
-          panel2: '#191A3A',
-          violet: '#9333EA',
-          violetbright: '#C084FC',
-          cyan: '#22D3EE',
-          cyanbright: '#7DF2FF',
-          bone: '#F4F3FF',
-          mute: '#9491B4',
-          line: 'rgba(168,85,247,0.22)'
+          navy: {
+            950: '#060815',
+            900: '#0A0D1F',
+            800: '#10142B',
+            700: '#171C3A',
+            600: '#212749',
+          },
+          neon: {
+            300: '#D6C2FF',
+            400: '#B383FF',
+            500: '#9D5CFF',
+            600: '#7C3AED',
+            700: '#5B21B6',
+          },
+          mint: {
+            300: '#99F6E4',
+            400: '#5EEAD4',
+            500: '#2DD4BF',
+          },
+          bone: '#E8E9F5',
         },
         fontFamily: {
-          display: ['"Plus Jakarta Sans"', 'sans-serif'],
-          body: ['Inter', 'sans-serif']
-        }
-      }
-    }
+          display: ['"Fraunces"', 'serif'],
+          body: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+      },
+    },
   }
 </script>
-<style>
-  :root{ scroll-behavior:smooth; }
-  body{ background:#06060D; }
-  ::selection{ background:#9333EA; color:#F4F3FF; }
 
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-    outline: 2px solid #7DF2FF;
+<style>
+  :root{
+    --neon: #9D5CFF;
+    --neon-bright: #D6C2FF;
+    --mint: #5EEAD4;
+    --navy: #060815;
+  }
+  *{ scroll-behavior: smooth; }
+  body{
+    background-color: var(--navy);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #F3EFE4;
+  }
+  .font-display{ font-family: 'Fraunces', serif; }
+
+  ::selection{ background: var(--neon); color: #0B0C0F; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline: 2px solid var(--neon-bright);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
-  /* grain overlay for premium texture */
   .grain{
-    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    position: absolute; inset: 0; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .glass{
-    background: linear-gradient(180deg, rgba(147,51,234,0.07), rgba(34,211,238,0.03));
-    border: 1px solid rgba(168,85,247,0.18);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .glow{ position:absolute; border-radius:50%; filter: blur(100px); pointer-events:none; }
-
-  /* neon text */
-  .neon-text{
-    text-shadow: 0 0 24px rgba(168,85,247,0.55), 0 0 60px rgba(34,211,238,0.25);
-  }
-
-  /* soundwave */
-  .wave{ display:flex; align-items:center; gap:3px; }
-  .wave .bar{
-    width:3px; border-radius:2px;
-    background: linear-gradient(180deg,#7DF2FF,#9333EA);
-    animation: barpulse 1.2s ease-in-out infinite;
+  .wave-bars{ display:flex; align-items:center; gap: 4px; }
+  .wave-bars .bar{
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(to top, var(--neon) 0%, var(--mint) 100%);
     transform-origin: center;
+    animation: barpulse 1.4s ease-in-out infinite;
   }
   @keyframes barpulse{
-    0%,100%{ transform: scaleY(0.3); opacity:.55; }
-    50%{ transform: scaleY(1); opacity:1; }
+    0%, 100% { transform: scaleY(.35); opacity:.55; }
+    50% { transform: scaleY(1); opacity: 1; }
   }
-  .wave.playing .bar{ animation-play-state: running; }
-  .wave.paused .bar{ animation-play-state: paused; transform: scaleY(0.25); opacity:.4; }
+  .wave-bars.paused .bar{ animation-play-state: paused; opacity:.35; transform: scaleY(.25); }
 
-  @keyframes drift{
-    0%{ transform: translateY(0px);}
-    50%{ transform: translateY(-14px);}
-    100%{ transform: translateY(0px);}
+  .hero-wave rect{
+    animation: heroWave 2.6s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
   }
-  .drift{ animation: drift 7s ease-in-out infinite; }
-
-  @keyframes ringpulse{
-    0%,100%{ opacity:.3; transform:scale(1); }
-    50%{ opacity:.65; transform:scale(1.04); }
+  @keyframes heroWave{
+    0%, 100% { transform: scaleY(.3); }
+    50% { transform: scaleY(1); }
   }
-  .ringpulse{ animation: ringpulse 4.5s ease-in-out infinite; }
-  .ringpulse-slow{ animation: ringpulse 6.5s ease-in-out infinite; animation-delay: 1s; }
 
-  @keyframes spotflicker{
-    0%,100%{ opacity:.55; }
-    45%{ opacity:.7; }
-    50%{ opacity:.5; }
-    55%{ opacity:.68; }
+  @keyframes spin-slow{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+  .spin-slow{ animation: spin-slow 22s linear infinite; }
+
+  @keyframes breathe{
+    0%, 100% { opacity: .45; transform: scale(1); }
+    50% { opacity: .8; transform: scale(1.06); }
   }
-  .spotlight{ animation: spotflicker 6s ease-in-out infinite; }
+  .breathe{ animation: breathe 5s ease-in-out infinite; }
 
-  @keyframes floaty{
-    0%{ transform: translateY(0) translateX(0); opacity:0; }
-    10%{ opacity:.7; }
-    90%{ opacity:.4; }
-    100%{ transform: translateY(-160px) translateX(12px); opacity:0; }
+  .glass{
+    background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+    border: 1px solid rgba(157,92,255,0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
-  .particle{ animation: floaty linear infinite; }
-
-  @keyframes marquee{
-    0%{ transform: translateX(0%); }
-    100%{ transform: translateX(-50%); }
-  }
-  .marquee-track{ display:flex; width:max-content; animation: marquee 22s linear infinite; }
-
-  .prog-fill{ transition: width 0.4s linear; }
-  .btn-scale:active{ transform: scale(0.96); }
-
-  .card-hover{ transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease; }
-  .card-hover:hover{
+  .glass-card{ transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .5s ease; }
+  .glass-card:hover{
     transform: translateY(-6px) scale(1.015);
-    border-color: rgba(125,242,255,0.5);
-    box-shadow: 0 0 0 1px rgba(147,51,234,0.25), 0 24px 70px -22px rgba(147,51,234,0.55);
+    border-color: rgba(157,92,255,0.55);
+    box-shadow: 0 24px 60px -20px rgba(157,92,255,0.35);
   }
 
-  .toast{ transition: opacity .25s ease, transform .25s ease; }
+  .btn-scale{ transition: transform .18s ease, box-shadow .3s ease, background-color .3s ease; }
+  .btn-scale:active{ transform: scale(.96); }
 
-  .btn-neon{
-    background: linear-gradient(135deg,#9333EA,#22D3EE);
-    box-shadow: 0 0 0 rgba(147,51,234,0);
-    transition: box-shadow .35s ease, transform .2s ease;
+  .divider-wave{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(157,92,255,.5), transparent);
   }
-  .btn-neon:hover{ box-shadow: 0 0 34px rgba(147,51,234,0.55), 0 0 70px rgba(34,211,238,0.25); }
+
+  .text-gradient-neon{
+    background: linear-gradient(100deg, #5EEAD4, #9D5CFF 55%, #5B21B6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .marquee-track{
+    display:flex; width: max-content;
+    animation: marquee 26s linear infinite;
+  }
+  @keyframes marquee{ from{ transform: translateX(0);} to{ transform: translateX(-50%);} }
+
+  .scrub-fill{ transition: width .2s linear; }
 
   @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   }
+
+  input, textarea{
+    background: rgba(255,255,255,0.03);
+  }
+  input::placeholder, textarea::placeholder{ color: #6b6a66; }
 </style>
 </head>
-<body class="bg-ink text-bone font-body antialiased relative">
-<div class="grain"></div>
 
-<!-- ============ NAV ============ -->
-<header class="fixed top-0 inset-x-0 z-50">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="mt-4 rounded-2xl glass shadow-lg shadow-black/40">
-      <div class="flex items-center justify-between px-4 sm:px-6 py-3">
-        <a href="#home" class="flex items-center gap-3 group">
-          <span class="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-violetbright to-cyan text-ink">
-            <i data-lucide="mic-2" style="width:18px;height:18px"></i>
+<body class="antialiased selection:bg-neon-500">
+
+  <!-- ============ NAV ============ -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="mt-4 flex items-center justify-between rounded-2xl glass px-5 py-3 lg:px-7">
+        <a href="#top" class="flex items-center gap-3 group">
+          <span class="relative flex h-9 w-9 items-center justify-center rounded-full border border-neon-500/40 bg-navy-800">
+            <i data-lucide="mic-2" class="h-4 w-4 text-neon-400"></i>
           </span>
-          <span class="font-display font-bold tracking-tight text-[15px] sm:text-base text-bone">Voice Of <span class="text-transparent bg-clip-text bg-gradient-to-r from-violetbright to-cyanbright">Victor</span></span>
+          <span class="font-display text-[15px] tracking-[0.18em] uppercase text-bone">Voice Of <span class="text-neon-400">Victor</span></span>
         </a>
 
-        <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-mute">
-          <a href="#services" class="hover:text-bone transition-colors">Services</a>
-          <a href="#demos" class="hover:text-bone transition-colors">Demos</a>
-          <a href="#tone" class="hover:text-bone transition-colors">The Voice</a>
-          <a href="#booking" class="hover:text-bone transition-colors">Contact</a>
+        <nav class="hidden md:flex items-center gap-9 text-sm text-bone/70">
+          <a href="#services" class="hover:text-neon-300 transition-colors">Services</a>
+          <a href="#demos" class="hover:text-neon-300 transition-colors">Demos</a>
+          <a href="#tone" class="hover:text-neon-300 transition-colors">Sound</a>
+          <a href="#contact" class="hover:text-neon-300 transition-colors">Contact</a>
         </nav>
 
         <a href="https://wa.me/2348037924679?text=Hi%20Victor%2C%20I%27d%20like%20to%20book%20a%20voiceover%20session."
            target="_blank" rel="noopener"
-           class="btn-scale btn-neon inline-flex items-center gap-2 rounded-full text-ink font-display font-semibold text-sm px-4 sm:px-5 py-2.5">
-          <i data-lucide="calendar-check" style="width:16px;height:16px"></i>
+           class="btn-scale inline-flex items-center gap-2 rounded-full bg-neon-500 hover:bg-neon-400 px-5 py-2.5 text-sm font-semibold text-navy-950 shadow-lg shadow-neon-500/20">
+          <i data-lucide="calendar-check" class="h-4 w-4"></i>
           <span class="hidden sm:inline">Book Now</span>
-          <span class="sm:hidden">Book</span>
         </a>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- ============ HERO ============ -->
-<section id="home" class="relative overflow-hidden pt-40 pb-28 sm:pt-48 sm:pb-36">
-  <div class="glow bg-violet/30 w-[560px] h-[560px] -top-40 -left-40"></div>
-  <div class="glow bg-cyan/15 w-[460px] h-[460px] bottom-0 right-0"></div>
+  <!-- ============ HERO ============ -->
+  <section id="top" class="relative overflow-hidden pt-40 pb-28 lg:pt-52 lg:pb-36">
+    <div class="grain"></div>
+    <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[560px] w-[560px] rounded-full bg-neon-500/25 blur-[140px] breathe"></div>
+    <div class="pointer-events-none absolute top-20 -right-20 h-[380px] w-[380px] rounded-full bg-mint-400/10 blur-[120px]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(157,92,255,0.09),transparent_60%)]"></div>
 
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
-    <div class="grid lg:grid-cols-12 gap-14 items-center">
+    <svg class="hero-wave pointer-events-none absolute inset-x-0 bottom-0 w-full h-40 lg:h-56 opacity-[0.22]" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="waveGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#9D5CFF" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#5EEAD4" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <g fill="url(#waveGrad)"></g>
+    </svg>
 
-      <div class="lg:col-span-7">
-        <div class="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-xs tracking-widest uppercase text-violetbright font-semibold mb-7">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-60"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
-          </span>
-          Professional Voiceover Artist
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-14 items-center">
+
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 rounded-full border border-neon-500/30 bg-neon-500/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-neon-300">
+            <span class="h-1.5 w-1.5 rounded-full bg-mint-400 animate-pulse"></span>
+            Now booking sessions
+          </div>
+
+          <h1 class="mt-7 font-display text-[13vw] leading-[0.95] sm:text-6xl lg:text-[5.2rem] tracking-tight text-bone">
+            Voice Of
+            <span class="block text-gradient-neon italic">Victor</span>
+          </h1>
+
+          <p class="mt-6 font-display italic text-xl sm:text-2xl text-neon-300/90">
+            Bringing words to life.
+          </p>
+
+          <p class="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-bone/65">
+            Deep, clear, impactful. Your story, my voice, real connection —
+            modern sound, global appeal, timeless delivery.
+          </p>
+
+          <div class="mt-10 flex flex-col sm:flex-row gap-4">
+            <a href="#demos" class="btn-scale inline-flex items-center justify-center gap-2 rounded-full bg-neon-500 hover:bg-neon-400 px-7 py-4 text-sm font-semibold uppercase tracking-wide text-navy-950 shadow-xl shadow-neon-500/25">
+              <i data-lucide="play-circle" class="h-5 w-5"></i>
+              Listen to Demos
+            </a>
+            <a href="https://wa.me/2348037924679?text=Hi%20Victor%2C%20I%27d%20like%20to%20book%20a%20voiceover%20session."
+               target="_blank" rel="noopener"
+               class="btn-scale inline-flex items-center justify-center gap-2 rounded-full border border-neon-400/40 hover:border-neon-300 bg-white/[0.02] hover:bg-white/[0.06] px-7 py-4 text-sm font-semibold uppercase tracking-wide text-bone">
+              <i data-lucide="message-circle" class="h-5 w-5 text-neon-400"></i>
+              Book Victor Now
+            </a>
+          </div>
+
+          <div class="mt-12 flex items-center gap-6 text-bone/50 text-xs uppercase tracking-widest">
+            <span class="flex items-center gap-2"><i data-lucide="globe" class="h-4 w-4 text-neon-500"></i>Global delivery</span>
+            <span class="h-4 w-px bg-bone/15"></span>
+            <span class="flex items-center gap-2"><i data-lucide="clock" class="h-4 w-4 text-neon-500"></i>48hr turnaround</span>
+          </div>
         </div>
 
-        <h1 class="font-display font-extrabold leading-[0.98] tracking-tight text-5xl sm:text-6xl lg:text-7xl">
-          Voice Of
-          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyanbright via-violetbright to-violet neon-text">Victor</span>
-        </h1>
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative h-72 w-72 sm:h-96 sm:w-96 flex items-center justify-center">
+            <div class="absolute inset-0 rounded-full border border-neon-500/20"></div>
+            <div class="absolute inset-6 rounded-full border border-dashed border-neon-500/25 spin-slow"></div>
+            <div class="absolute inset-0 rounded-full bg-neon-500/10 blur-3xl breathe"></div>
 
-        <p class="mt-6 font-display text-xl sm:text-2xl text-bone/90">Bringing words to life.</p>
+            <div class="relative flex h-40 w-40 sm:h-52 sm:w-52 items-center justify-center rounded-full glass shadow-2xl shadow-black/50">
+              <i data-lucide="mic" class="h-16 w-16 sm:h-20 sm:w-20 text-neon-300"></i>
+            </div>
 
-        <p class="mt-5 max-w-xl text-mute text-base sm:text-lg leading-relaxed">
-          Deep, clear, impactful. Your story, my voice, real connection.
-          Modern sound, global appeal, timeless delivery for brands that want to be heard, not just seen.
+            <div class="wave-bars absolute -bottom-2 sm:bottom-2 left-1/2 -translate-x-1/2 h-14 items-end" aria-hidden="true">
+              <span class="bar h-4" style="animation-delay:0s"></span>
+              <span class="bar h-8" style="animation-delay:.1s"></span>
+              <span class="bar h-12" style="animation-delay:.2s"></span>
+              <span class="bar h-6" style="animation-delay:.3s"></span>
+              <span class="bar h-14" style="animation-delay:.4s"></span>
+              <span class="bar h-8" style="animation-delay:.5s"></span>
+              <span class="bar h-10" style="animation-delay:.6s"></span>
+              <span class="bar h-5" style="animation-delay:.7s"></span>
+              <span class="bar h-12" style="animation-delay:.8s"></span>
+              <span class="bar h-7" style="animation-delay:.9s"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-10"><div class="divider-wave"></div></div>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="relative py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="max-w-2xl">
+        <span class="text-xs uppercase tracking-[0.25em] text-neon-400">What I record</span>
+        <h2 class="mt-4 font-display text-4xl sm:text-5xl text-bone">Every register a story needs</h2>
+        <p class="mt-4 text-bone/60 leading-relaxed">
+          Five core reads, one consistent standard — warm on the ear, precise on the timing, ready for broadcast.
         </p>
-
-        <div class="mt-10 flex flex-wrap items-center gap-4">
-          <a href="#demos" class="btn-scale inline-flex items-center gap-3 rounded-full bg-bone text-ink font-display font-semibold px-6 py-3.5 hover:bg-white transition-colors">
-            <i data-lucide="play-circle" style="width:20px;height:20px"></i>
-            Listen to Demos
-          </a>
-          <a href="https://wa.me/2348037924679?text=Hi%20Victor%2C%20I%27d%20like%20to%20book%20a%20voiceover%20session."
-             target="_blank" rel="noopener"
-             class="btn-scale btn-neon inline-flex items-center gap-3 rounded-full text-ink font-display font-semibold px-6 py-3.5">
-            <i data-lucide="mic" style="width:18px;height:18px"></i>
-            Book Victor Now
-          </a>
-        </div>
-
-        <div class="mt-12 flex items-center gap-8 text-sm text-mute">
-          <div>
-            <p class="font-display text-2xl font-bold text-bone">5+</p>
-            <p>Voice categories</p>
-          </div>
-          <div class="h-8 w-px bg-line"></div>
-          <div>
-            <p class="font-display text-2xl font-bold text-bone">24hr</p>
-            <p>Typical turnaround</p>
-          </div>
-          <div class="h-8 w-px bg-line"></div>
-          <div>
-            <p class="font-display text-2xl font-bold text-bone">Global</p>
-            <p>Client reach</p>
-          </div>
-        </div>
       </div>
 
-      <!-- STUDIO MIC VISUAL -->
-      <div class="lg:col-span-5 relative">
-        <div class="relative mx-auto w-full max-w-sm aspect-square">
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          <!-- spotlight cone -->
-          <div class="spotlight absolute left-1/2 -translate-x-1/2 -top-10 w-[2px] h-[420px]" style="background:linear-gradient(180deg, rgba(125,242,255,0.35), rgba(147,51,234,0.08) 60%, transparent); filter:blur(1px);"></div>
-          <svg class="spotlight absolute left-1/2 -translate-x-1/2 -top-16 w-[340px] h-[420px] -z-0" viewBox="0 0 340 420">
-            <polygon points="170,0 60,420 280,420" fill="url(#coneGrad)" opacity="0.5"/>
-            <defs>
-              <linearGradient id="coneGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#7DF2FF" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#9333EA" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-          </svg>
-
-          <div class="absolute inset-0 rounded-full border border-violet/25 ringpulse"></div>
-          <div class="absolute inset-10 rounded-full border border-cyan/15 ringpulse-slow"></div>
-
-          <!-- floating particles -->
-          <div class="particle absolute left-[30%] top-[70%] w-1 h-1 rounded-full bg-cyanbright" style="animation-duration:6s; animation-delay:0s;"></div>
-          <div class="particle absolute left-[55%] top-[75%] w-1.5 h-1.5 rounded-full bg-violetbright" style="animation-duration:8s; animation-delay:1.5s;"></div>
-          <div class="particle absolute left-[45%] top-[80%] w-1 h-1 rounded-full bg-cyanbright" style="animation-duration:7s; animation-delay:3s;"></div>
-          <div class="particle absolute left-[65%] top-[68%] w-1 h-1 rounded-full bg-violetbright" style="animation-duration:9s; animation-delay:2s;"></div>
-
-          <!-- mic illustration -->
-          <div class="drift absolute inset-0 flex items-center justify-center">
-            <svg viewBox="0 0 240 320" class="w-56 sm:w-64 h-auto drop-shadow-[0_0_40px_rgba(147,51,234,0.45)]">
-              <defs>
-                <linearGradient id="micBody" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#2A2B45"/>
-                  <stop offset="45%" stop-color="#14152A"/>
-                  <stop offset="100%" stop-color="#06060D"/>
-                </linearGradient>
-                <linearGradient id="micRim" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#7DF2FF"/>
-                  <stop offset="100%" stop-color="#9333EA"/>
-                </linearGradient>
-                <linearGradient id="standGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3A3B5C"/>
-                  <stop offset="100%" stop-color="#0B0C18"/>
-                </linearGradient>
-              </defs>
-
-              <!-- boom / stand -->
-              <path d="M120 320 L120 250" stroke="url(#standGrad)" stroke-width="8" stroke-linecap="round"/>
-              <path d="M60 250 Q120 210 180 250" stroke="url(#standGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-              <!-- shock mount cage -->
-              <ellipse cx="120" cy="150" rx="58" ry="70" fill="none" stroke="url(#micRim)" stroke-width="2" opacity="0.55"/>
-              <path d="M62 150 Q120 100 178 150" stroke="url(#micRim)" stroke-width="2" fill="none" opacity="0.4"/>
-              <path d="M62 150 Q120 200 178 150" stroke="url(#micRim)" stroke-width="2" fill="none" opacity="0.4"/>
-              <path d="M75 110 L165 190" stroke="url(#micRim)" stroke-width="1.5" opacity="0.3"/>
-              <path d="M165 110 L75 190" stroke="url(#micRim)" stroke-width="1.5" opacity="0.3"/>
-
-              <!-- mic body -->
-              <rect x="90" y="70" width="60" height="150" rx="30" fill="url(#micBody)" stroke="url(#micRim)" stroke-width="1.5"/>
-
-              <!-- mesh grille lines -->
-              <g stroke="#7DF2FF" stroke-width="1" opacity="0.35">
-                <line x1="100" y1="85" x2="100" y2="165"/>
-                <line x1="110" y1="80" x2="110" y2="170"/>
-                <line x1="120" y1="78" x2="120" y2="172"/>
-                <line x1="130" y1="80" x2="130" y2="170"/>
-                <line x1="140" y1="85" x2="140" y2="165"/>
-              </g>
-              <g stroke="#7DF2FF" stroke-width="1" opacity="0.2">
-                <line x1="92" y1="110" x2="148" y2="110"/>
-                <line x1="92" y1="130" x2="148" y2="130"/>
-                <line x1="92" y1="150" x2="148" y2="150"/>
-              </g>
-
-              <!-- body band + LED -->
-              <rect x="90" y="182" width="60" height="10" fill="#0B0C18" stroke="url(#micRim)" stroke-width="1" opacity="0.7"/>
-              <circle cx="120" cy="187" r="3" fill="#7DF2FF">
-                <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
-              </circle>
-
-              <!-- lower body -->
-              <rect x="96" y="195" width="48" height="35" rx="10" fill="url(#micBody)" stroke="url(#micRim)" stroke-width="1" opacity="0.9"/>
-            </svg>
-          </div>
-
-          <!-- waveform emitting from mic -->
-          <div class="wave playing absolute left-1/2 -translate-x-1/2 bottom-2" id="heroWave"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ SERVICES ============ -->
-<section id="services" class="relative py-24 sm:py-32 border-t border-line">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="max-w-2xl mb-16">
-      <p class="text-cyanbright font-semibold tracking-widest text-xs uppercase mb-3">What I record</p>
-      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">Every read, built for the room it's played in.</h2>
-      <p class="mt-4 text-mute text-lg">Five core lanes, one consistent standard: broadcast-clean audio, delivered on time.</p>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-      <div class="card-hover glass rounded-2xl p-7 lg:col-span-2">
-        <div class="flex items-start justify-between">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 border border-violet/30">
-            <i data-lucide="megaphone" class="text-violetbright" style="width:22px;height:22px"></i>
-          </div>
-          <span class="text-mute text-xs font-semibold tracking-widest uppercase">01</span>
-        </div>
-        <h3 class="font-display font-bold text-xl mt-5">Commercials</h3>
-        <p class="text-mute mt-2 leading-relaxed">Radio and TV spots that sell without shouting. Punchy, warm, and built to close.</p>
-      </div>
-
-      <div class="card-hover glass rounded-2xl p-7">
-        <div class="flex items-start justify-between">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan/15 border border-cyan/30">
-            <i data-lucide="book-open" class="text-cyanbright" style="width:22px;height:22px"></i>
-          </div>
-          <span class="text-mute text-xs font-semibold tracking-widest uppercase">02</span>
-        </div>
-        <h3 class="font-display font-bold text-xl mt-5">Narration</h3>
-        <p class="text-mute mt-2 leading-relaxed">Documentaries and explainers with a steady, trustworthy pace.</p>
-      </div>
-
-      <div class="card-hover glass rounded-2xl p-7">
-        <div class="flex items-start justify-between">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 border border-violet/30">
-            <i data-lucide="headphones" class="text-violetbright" style="width:22px;height:22px"></i>
-          </div>
-          <span class="text-mute text-xs font-semibold tracking-widest uppercase">03</span>
-        </div>
-        <h3 class="font-display font-bold text-xl mt-5">Audiobooks</h3>
-        <p class="text-mute mt-2 leading-relaxed">Long-form narration with character and stamina, chapter after chapter.</p>
-      </div>
-
-      <div class="card-hover glass rounded-2xl p-7">
-        <div class="flex items-start justify-between">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan/15 border border-cyan/30">
-            <i data-lucide="briefcase" class="text-cyanbright" style="width:22px;height:22px"></i>
-          </div>
-          <span class="text-mute text-xs font-semibold tracking-widest uppercase">04</span>
-        </div>
-        <h3 class="font-display font-bold text-xl mt-5">Corporate</h3>
-        <p class="text-mute mt-2 leading-relaxed">Training modules and internal comms that sound like a person, not a policy.</p>
-      </div>
-
-      <div class="card-hover glass rounded-2xl p-7 lg:col-span-2">
-        <div class="flex items-start justify-between">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 border border-violet/30">
-            <i data-lucide="radio" class="text-violetbright" style="width:22px;height:22px"></i>
-          </div>
-          <span class="text-mute text-xs font-semibold tracking-widest uppercase">05</span>
-        </div>
-        <h3 class="font-display font-bold text-xl mt-5">Announcements</h3>
-        <p class="text-mute mt-2 leading-relaxed">IVR, on-hold, event, and venue announcements that stay clear over any speaker system.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ DEMOS ============ -->
-<section id="demos" class="relative py-24 sm:py-32 border-t border-line bg-panel/30">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="max-w-2xl mb-16">
-      <p class="text-cyanbright font-semibold tracking-widest text-xs uppercase mb-3">Hear it first</p>
-      <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">A few samples from the booth.</h2>
-      <p class="mt-4 text-mute text-lg">Press play on any track below. Swap in your own audio files whenever you're ready to go live.</p>
-    </div>
-
-    <div id="demoList" class="grid sm:grid-cols-2 gap-5"></div>
-  </div>
-</section>
-
-<!-- ============ TONE BANNER ============ -->
-<section id="tone" class="relative py-20 sm:py-28 overflow-hidden border-t border-y border-line bg-gradient-to-br from-panel2 via-ink to-panel2">
-  <div class="glow bg-violet/25 w-[600px] h-[300px] top-0 left-1/2 -translate-x-1/2"></div>
-
-  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 text-center">
-    <p class="text-cyanbright font-semibold tracking-widest text-xs uppercase mb-6">The Voice</p>
-
-    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5 font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight">
-      <span>Deep</span>
-      <span class="text-violet/60">|</span>
-      <span>Clear</span>
-      <span class="text-violet/60">|</span>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyanbright to-violetbright neon-text">Impactful</span>
-    </div>
-
-    <div class="mt-10 overflow-hidden">
-      <div class="marquee-track">
-        <span class="mx-6 font-display text-lg sm:text-xl text-mute flex items-center gap-6">
-          Modern Sound <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i> Global Appeal <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i> Timeless Delivery <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i>
-        </span>
-        <span class="mx-6 font-display text-lg sm:text-xl text-mute flex items-center gap-6">
-          Modern Sound <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i> Global Appeal <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i> Timeless Delivery <i data-lucide="dot" style="width:16px;height:16px" class="text-violet/60"></i>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BOOKING / CONTACT ============ -->
-<section id="booking" class="relative py-24 sm:py-32 border-t border-line">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="grid lg:grid-cols-2 gap-14 items-start">
-
-      <div>
-        <p class="text-cyanbright font-semibold tracking-widest text-xs uppercase mb-3">Get in touch</p>
-        <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">Let's put a voice on your project.</h2>
-        <p class="mt-4 text-mute text-lg max-w-md">Reach out directly, or send a booking inquiry and Victor will get back to you within a day.</p>
-
-        <div class="mt-10 space-y-4">
-          <button data-copy="+2348037924679" class="copy-btn btn-scale w-full flex items-center justify-between gap-4 glass rounded-2xl p-5 text-left hover:border-cyan/50 transition-colors">
-            <span class="flex items-center gap-4">
-              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-violet/15 border border-violet/30 shrink-0">
-                <i data-lucide="phone" class="text-violetbright" style="width:18px;height:18px"></i>
-              </span>
-              <span>
-                <span class="block text-xs text-mute uppercase tracking-wider">Phone / WhatsApp</span>
-                <span class="block font-display font-semibold text-bone">+234 803 792 4679</span>
-              </span>
+        <article class="glass-card glass rounded-3xl p-8 relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-neon-500/10 border border-neon-500/25">
+              <i data-lucide="megaphone" class="h-5 w-5 text-neon-400"></i>
             </span>
-            <i data-lucide="copy" class="text-mute shrink-0" style="width:16px;height:16px"></i>
-          </button>
+          </div>
+          <h3 class="mt-6 font-display text-2xl text-bone">Commercials</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone/55">Punchy, persuasive reads built to sell — TV, radio and streaming spots that land the CTA.</p>
+        </article>
 
-          <button data-copy="vicmasmedia@gmail.com" class="copy-btn btn-scale w-full flex items-center justify-between gap-4 glass rounded-2xl p-5 text-left hover:border-cyan/50 transition-colors">
-            <span class="flex items-center gap-4">
-              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-cyan/15 border border-cyan/30 shrink-0">
-                <i data-lucide="mail" class="text-cyanbright" style="width:18px;height:18px"></i>
-              </span>
-              <span>
-                <span class="block text-xs text-mute uppercase tracking-wider">Email</span>
-                <span class="block font-display font-semibold text-bone">vicmasmedia@gmail.com</span>
-              </span>
+        <article class="glass-card glass rounded-3xl p-8 relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-neon-500/10 border border-neon-500/25">
+              <i data-lucide="film" class="h-5 w-5 text-neon-400"></i>
             </span>
-            <i data-lucide="copy" class="text-mute shrink-0" style="width:16px;height:16px"></i>
-          </button>
+          </div>
+          <h3 class="mt-6 font-display text-2xl text-bone">Narration</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone/55">Documentary and explainer narration with pace and gravitas — guiding the viewer, never competing with them.</p>
+        </article>
 
-          <div class="flex gap-4 pt-2">
-            <a href="https://wa.me/2348037924679" target="_blank" rel="noopener"
-               class="btn-scale btn-neon flex-1 inline-flex items-center justify-center gap-2 rounded-full text-ink font-display font-semibold px-5 py-3.5">
-              <i data-lucide="message-circle" style="width:18px;height:18px"></i> WhatsApp
-            </a>
-            <a href="mailto:vicmasmedia@gmail.com" target="_blank" rel="noopener"
-               class="btn-scale flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-violet/50 hover:bg-violet/10 text-bone font-display font-semibold px-5 py-3.5 transition-colors">
-              <i data-lucide="send" style="width:18px;height:18px"></i> Email
-            </a>
+        <article class="glass-card glass rounded-3xl p-8 relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-neon-500/10 border border-neon-500/25">
+              <i data-lucide="book-open" class="h-5 w-5 text-neon-400"></i>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-2xl text-bone">Audiobooks</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone/55">Long-form character and prose work — consistent tone across chapters, sessions and series.</p>
+        </article>
+
+        <article class="glass-card glass rounded-3xl p-8 relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-neon-500/10 border border-neon-500/25">
+              <i data-lucide="briefcase" class="h-5 w-5 text-neon-400"></i>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-2xl text-bone">Corporate</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone/55">Training modules, IVR and internal comms delivered with clarity, trust and zero ambiguity.</p>
+        </article>
+
+        <article class="glass-card glass rounded-3xl p-8 relative overflow-hidden">
+          <div class="flex items-center justify-between">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-neon-500/10 border border-neon-500/25">
+              <i data-lucide="radio-tower" class="h-5 w-5 text-neon-400"></i>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-2xl text-bone">Announcements</h3>
+          <p class="mt-3 text-sm leading-relaxed text-bone/55">Event, transit and on-air announcements — crisp diction that carries in any acoustic space.</p>
+        </article>
+
+        <article class="rounded-3xl p-8 relative overflow-hidden bg-gradient-to-br from-neon-500 to-neon-700 flex flex-col justify-between">
+          <div>
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-950/20 border border-navy-950/20">
+              <i data-lucide="sparkles" class="h-5 w-5 text-navy-950"></i>
+            </span>
+            <h3 class="mt-6 font-display text-2xl text-navy-950">Need something else?</h3>
+            <p class="mt-3 text-sm leading-relaxed text-navy-950/75">E-learning, IVR, or a custom read — tell me the brief.</p>
+          </div>
+          <a href="#contact" class="btn-scale mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-navy-950 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-neon-300">
+            Start a brief <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-6 lg:px-10"><div class="divider-wave"></div></div>
+
+  <!-- ============ DEMOS ============ -->
+  <section id="demos" class="relative py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <div class="max-w-xl">
+          <span class="text-xs uppercase tracking-[0.25em] text-neon-400">Reel</span>
+          <h2 class="mt-4 font-display text-4xl sm:text-5xl text-bone">Hear the range</h2>
+        </div>
+        <p class="text-sm text-bone/45 max-w-sm">Tap a track to preview the read. Drop your own MP3s into each player's source to go live.</p>
+      </div>
+
+      <div id="demo-list" class="mt-14 space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ============ TONE BANNER ============ -->
+  <section id="tone" class="relative py-28 lg:py-36 overflow-hidden border-y border-neon-500/15">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(157,92,255,0.10),transparent_65%)]"></div>
+    <div class="grain"></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-10 text-center">
+      <span class="text-xs uppercase tracking-[0.3em] text-neon-400">The instrument</span>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+        <span class="font-display italic text-4xl sm:text-6xl lg:text-7xl text-bone">Deep</span>
+        <span class="text-neon-500 text-3xl font-light">|</span>
+        <span class="font-display italic text-4xl sm:text-6xl lg:text-7xl text-gradient-neon">Clear</span>
+        <span class="text-neon-500 text-3xl font-light">|</span>
+        <span class="font-display italic text-4xl sm:text-6xl lg:text-7xl text-bone">Impactful</span>
+      </div>
+
+      <p class="mt-8 text-sm sm:text-base uppercase tracking-[0.35em] text-bone/50">
+        Modern sound <span class="text-neon-500 mx-2">•</span> Global appeal <span class="text-neon-500 mx-2">•</span> Timeless delivery
+      </p>
+
+      <div class="mt-16 overflow-hidden">
+        <div class="marquee-track gap-8 opacity-40">
+          <div class="wave-bars h-10 items-end" aria-hidden="true">
+            <span class="bar h-3"></span><span class="bar h-7"></span><span class="bar h-4"></span><span class="bar h-9"></span><span class="bar h-5"></span><span class="bar h-10"></span><span class="bar h-3"></span><span class="bar h-8"></span><span class="bar h-6"></span><span class="bar h-4"></span><span class="bar h-9"></span><span class="bar h-5"></span><span class="bar h-3"></span><span class="bar h-7"></span><span class="bar h-10"></span><span class="bar h-4"></span><span class="bar h-8"></span><span class="bar h-6"></span><span class="bar h-3"></span><span class="bar h-9"></span>
+          </div>
+          <div class="wave-bars h-10 items-end" aria-hidden="true">
+            <span class="bar h-3"></span><span class="bar h-7"></span><span class="bar h-4"></span><span class="bar h-9"></span><span class="bar h-5"></span><span class="bar h-10"></span><span class="bar h-3"></span><span class="bar h-8"></span><span class="bar h-6"></span><span class="bar h-4"></span><span class="bar h-9"></span><span class="bar h-5"></span><span class="bar h-3"></span><span class="bar h-7"></span><span class="bar h-10"></span><span class="bar h-4"></span><span class="bar h-8"></span><span class="bar h-6"></span><span class="bar h-3"></span><span class="bar h-9"></span>
           </div>
         </div>
       </div>
-
-      <form id="bookingForm" class="glass rounded-2xl p-6 sm:p-8 space-y-5">
-        <h3 class="font-display font-bold text-xl mb-1">Booking Inquiry</h3>
-        <p class="text-mute text-sm mb-4">Fill this in and it opens a ready-to-send email to Victor.</p>
-
-        <div>
-          <label for="name" class="block text-xs uppercase tracking-wider text-mute mb-2">Name</label>
-          <input id="name" name="name" type="text" required placeholder="Your full name"
-                 class="w-full rounded-xl bg-panel2 border border-line px-4 py-3 text-bone placeholder:text-mute/60 focus:border-cyan/60 outline-none transition-colors">
-        </div>
-
-        <div>
-          <label for="email" class="block text-xs uppercase tracking-wider text-mute mb-2">Email</label>
-          <input id="email" name="email" type="email" required placeholder="you@company.com"
-                 class="w-full rounded-xl bg-panel2 border border-line px-4 py-3 text-bone placeholder:text-mute/60 focus:border-cyan/60 outline-none transition-colors">
-        </div>
-
-        <div>
-          <label for="project" class="block text-xs uppercase tracking-wider text-mute mb-2">Project type</label>
-          <select id="project" name="project"
-                  class="w-full rounded-xl bg-panel2 border border-line px-4 py-3 text-bone focus:border-cyan/60 outline-none transition-colors">
-            <option>Commercial</option>
-            <option>Narration</option>
-            <option>Audiobook</option>
-            <option>Corporate</option>
-            <option>Announcement</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="message" class="block text-xs uppercase tracking-wider text-mute mb-2">Project details</label>
-          <textarea id="message" name="message" rows="4" required placeholder="Tell Victor a bit about the script, timeline, and where it's going out."
-                    class="w-full rounded-xl bg-panel2 border border-line px-4 py-3 text-bone placeholder:text-mute/60 focus:border-cyan/60 outline-none transition-colors resize-none"></textarea>
-        </div>
-
-        <button type="submit" class="btn-scale w-full inline-flex items-center justify-center gap-2 rounded-full bg-bone hover:bg-white text-ink font-display font-semibold px-6 py-3.5 transition-colors">
-          <i data-lucide="send" style="width:18px;height:18px"></i>
-          Send Inquiry
-        </button>
-      </form>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="border-t border-line py-10">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-    <div class="flex items-center gap-3">
-      <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violetbright to-cyan text-ink">
-        <i data-lucide="mic-2" style="width:15px;height:15px"></i>
-      </span>
-      <span class="font-display font-bold text-sm">Voice Of Victor</span>
+  <!-- ============ CONTACT / BOOKING ============ -->
+  <section id="contact" class="relative py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-14">
+
+        <div class="lg:col-span-5">
+          <span class="text-xs uppercase tracking-[0.25em] text-neon-400">Get in touch</span>
+          <h2 class="mt-4 font-display text-4xl sm:text-5xl text-bone">Let's record<br/>something real.</h2>
+          <p class="mt-5 text-bone/60 leading-relaxed max-w-md">
+            Send a brief or just say hello — most bookings are confirmed same-day, sessions delivered within 48 hours.
+          </p>
+
+          <div class="mt-10 space-y-3">
+            <button onclick="copyToClipboard('+2348037924679', this)" class="quick-contact w-full btn-scale flex items-center justify-between rounded-2xl glass px-5 py-4 text-left hover:border-neon-400/50">
+              <span class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-neon-500/10 border border-neon-500/25">
+                  <i data-lucide="phone" class="h-4 w-4 text-neon-400"></i>
+                </span>
+                <span>
+                  <span class="block text-[11px] uppercase tracking-widest text-bone/40">WhatsApp / Phone</span>
+                  <span class="block text-sm text-bone">+234 803 792 4679</span>
+                </span>
+              </span>
+              <span class="copy-label text-[11px] uppercase tracking-widest text-neon-400 flex items-center gap-1">
+                <i data-lucide="copy" class="h-3.5 w-3.5"></i>Copy
+              </span>
+            </button>
+
+            <button onclick="copyToClipboard('vicmasmedia@gmail.com', this)" class="quick-contact w-full btn-scale flex items-center justify-between rounded-2xl glass px-5 py-4 text-left hover:border-neon-400/50">
+              <span class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-neon-500/10 border border-neon-500/25">
+                  <i data-lucide="mail" class="h-4 w-4 text-neon-400"></i>
+                </span>
+                <span>
+                  <span class="block text-[11px] uppercase tracking-widest text-bone/40">Email</span>
+                  <span class="block text-sm text-bone">vicmasmedia@gmail.com</span>
+                </span>
+              </span>
+              <span class="copy-label text-[11px] uppercase tracking-widest text-neon-400 flex items-center gap-1">
+                <i data-lucide="copy" class="h-3.5 w-3.5"></i>Copy
+              </span>
+            </button>
+
+            <div class="flex gap-3 pt-2">
+              <a href="https://wa.me/2348037924679" target="_blank" rel="noopener" class="btn-scale flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-neon-500 hover:bg-neon-400 px-5 py-3.5 text-sm font-semibold text-navy-950">
+                <i data-lucide="message-circle" class="h-4 w-4"></i> WhatsApp
+              </a>
+              <a href="mailto:vicmasmedia@gmail.com" class="btn-scale flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-neon-400/40 hover:border-neon-300 px-5 py-3.5 text-sm font-semibold text-bone">
+                <i data-lucide="send" class="h-4 w-4 text-neon-400"></i> Email
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <form id="booking-form" class="glass rounded-3xl p-7 sm:p-9 space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-[11px] uppercase tracking-widest text-bone/45 mb-2">Your name</label>
+                <input id="name" name="name" type="text" required placeholder="Full name"
+                  class="w-full rounded-xl border border-bone/10 px-4 py-3 text-sm text-bone placeholder:text-bone/30 focus:border-neon-400 outline-none transition-colors" />
+              </div>
+              <div>
+                <label for="email" class="block text-[11px] uppercase tracking-widest text-bone/45 mb-2">Your email</label>
+                <input id="email" name="email" type="email" required placeholder="you@company.com"
+                  class="w-full rounded-xl border border-bone/10 px-4 py-3 text-sm text-bone placeholder:text-bone/30 focus:border-neon-400 outline-none transition-colors" />
+              </div>
+            </div>
+
+            <div>
+              <label for="project-type" class="block text-[11px] uppercase tracking-widest text-bone/45 mb-2">Project type</label>
+              <select id="project-type" name="project-type"
+                class="w-full rounded-xl border border-bone/10 bg-navy-900 px-4 py-3 text-sm text-bone focus:border-neon-400 outline-none transition-colors">
+                <option>Commercial</option>
+                <option>Narration</option>
+                <option>Audiobook</option>
+                <option>Corporate</option>
+                <option>Announcement</option>
+                <option>Something else</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-[11px] uppercase tracking-widest text-bone/45 mb-2">Tell me about the project</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Script length, tone, deadline, where it will air..."
+                class="w-full rounded-xl border border-bone/10 px-4 py-3 text-sm text-bone placeholder:text-bone/30 focus:border-neon-400 outline-none transition-colors resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="btn-scale w-full inline-flex items-center justify-center gap-2 rounded-full bg-neon-500 hover:bg-neon-400 px-6 py-4 text-sm font-semibold uppercase tracking-wide text-navy-950">
+              <i data-lucide="mic" class="h-4 w-4"></i>
+              Send Booking Inquiry
+            </button>
+            <p id="form-note" class="text-center text-xs text-bone/35">Opens your email client, addressed to vicmasmedia@gmail.com.</p>
+          </form>
+        </div>
+
+      </div>
     </div>
-    <div class="wave" id="footerWave"></div>
-    <p class="text-mute text-sm">&copy; <span id="year"></span> Voice Of Victor. Bringing words to life.</p>
-  </div>
-</footer>
+  </section>
 
-<!-- ============ STICKY FLOATING CONTACT ============ -->
-<div class="fixed bottom-6 right-5 sm:right-8 z-50 flex flex-col items-end gap-3">
-  <div id="fabMenu" class="hidden flex-col gap-3 items-end">
-    <a href="mailto:vicmasmedia@gmail.com" target="_blank" rel="noopener"
-       class="btn-scale flex items-center gap-2 rounded-full bg-panel2 border border-violet/40 text-bone text-sm font-medium pl-4 pr-3 py-2.5 shadow-lg shadow-black/50 hover:border-cyan/60 transition-colors">
-      Email <i data-lucide="mail" class="text-cyanbright" style="width:16px;height:16px"></i>
-    </a>
-    <a href="https://wa.me/2348037924679" target="_blank" rel="noopener"
-       class="btn-scale flex items-center gap-2 rounded-full bg-panel2 border border-violet/40 text-bone text-sm font-medium pl-4 pr-3 py-2.5 shadow-lg shadow-black/50 hover:border-cyan/60 transition-colors">
-      WhatsApp <i data-lucide="message-circle" class="text-cyanbright" style="width:16px;height:16px"></i>
-    </a>
-  </div>
-  <button id="fabToggle" aria-label="Contact options"
-          class="btn-scale btn-neon flex h-14 w-14 items-center justify-center rounded-full text-ink shadow-xl shadow-black/60">
-    <i data-lucide="phone-call" id="fabIcon" style="width:22px;height:22px"></i>
-  </button>
-</div>
+  <!-- ============ FOOTER ============ -->
+  <footer class="relative border-t border-neon-500/10 py-12">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full border border-neon-500/40">
+          <i data-lucide="mic-2" class="h-3.5 w-3.5 text-neon-400"></i>
+        </span>
+        <span class="font-display text-sm tracking-[0.18em] uppercase text-bone/70">Voice Of Victor</span>
+      </div>
+      <p class="text-xs text-bone/35">© <span id="year"></span> Voice Of Victor. Bringing words to life.</p>
+      <div class="flex items-center gap-4 text-bone/40">
+        <a href="tel:+2348037924679" class="hover:text-neon-400 transition-colors" aria-label="Call"><i data-lucide="phone" class="h-4 w-4"></i></a>
+        <a href="mailto:vicmasmedia@gmail.com" class="hover:text-neon-400 transition-colors" aria-label="Email"><i data-lucide="mail" class="h-4 w-4"></i></a>
+        <a href="https://wa.me/2348037924679" target="_blank" rel="noopener" class="hover:text-neon-400 transition-colors" aria-label="WhatsApp"><i data-lucide="message-circle" class="h-4 w-4"></i></a>
+      </div>
+    </div>
+  </footer>
 
-<!-- copy toast -->
-<div id="toast" class="toast fixed bottom-24 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 opacity-0 translate-y-3 pointer-events-none">
-  <div class="flex items-center gap-2 rounded-full bg-bone text-ink font-display font-semibold text-sm px-5 py-2.5 shadow-xl">
-    <i data-lucide="check" style="width:16px;height:16px"></i>
-    <span id="toastText">Copied</span>
+  <!-- ============ FLOATING STICKY CONTACT ============ -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div id="fab-menu" class="hidden flex-col gap-3 items-end">
+      <a href="https://wa.me/2348037924679?text=Hi%20Victor%2C%20I%27d%20like%20to%20book%20a%20voiceover%20session."
+         target="_blank" rel="noopener"
+         class="btn-scale flex items-center gap-3 rounded-full glass pl-4 pr-2 py-2 text-sm text-bone hover:border-neon-400/50">
+        WhatsApp
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-neon-500 text-navy-950"><i data-lucide="message-circle" class="h-4 w-4"></i></span>
+      </a>
+      <a href="mailto:vicmasmedia@gmail.com"
+         class="btn-scale flex items-center gap-3 rounded-full glass pl-4 pr-2 py-2 text-sm text-bone hover:border-neon-400/50">
+        Email
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-neon-500 text-navy-950"><i data-lucide="mail" class="h-4 w-4"></i></span>
+      </a>
+    </div>
+    <button id="fab-toggle" aria-label="Quick contact" class="btn-scale flex h-14 w-14 items-center justify-center rounded-full bg-neon-500 hover:bg-neon-400 text-navy-950 shadow-2xl shadow-neon-500/30">
+      <i data-lucide="phone-call" class="h-5 w-5"></i>
+    </button>
   </div>
-</div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] hidden items-center gap-2 rounded-full bg-navy-800 border border-neon-500/40 px-5 py-3 text-sm text-bone shadow-2xl">
+    <i data-lucide="check-circle-2" class="h-4 w-4 text-neon-400"></i>
+    <span id="toast-text">Copied</span>
+  </div>
 
 <script>
   lucide.createIcons();
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* hero mic waveform */
-  (function(){
-    const el = document.getElementById('heroWave');
-    for(let i=0;i<22;i++){
-      const bar = document.createElement('span');
-      bar.className = 'bar';
-      const h = 5 + Math.random()*20;
-      bar.style.height = h+'px';
-      bar.style.animationDelay = (Math.random()*1.2)+'s';
-      el.appendChild(bar);
-    }
-  })();
-
-  /* footer mini wave */
-  (function(){
-    const el = document.getElementById('footerWave');
-    el.classList.add('playing');
-    for(let i=0;i<14;i++){
-      const bar = document.createElement('span');
-      bar.className = 'bar';
-      const h = 6 + Math.random()*14;
-      bar.style.height = h+'px';
-      bar.style.animationDelay = (Math.random()*1.2)+'s';
-      el.appendChild(bar);
-    }
-  })();
-
-  /* demo player cards */
+  // ---------- Demo player cards ----------
   const demos = [
-    { title: 'Coastal Bank — Radio Spot', tag: 'Commercials', icon: 'megaphone', time: '0:32' },
-    { title: 'Wild Nigeria — Documentary Opener', tag: 'Narration', icon: 'book-open', time: '1:05' },
-    { title: 'The Long Harmattan — Chapter One', tag: 'Audiobooks', icon: 'headphones', time: '2:14' },
-    { title: 'Onboarding — Welcome Module', tag: 'Corporate', icon: 'briefcase', time: '0:48' },
+    { title: "Global Tech Launch", tag: "Commercial", time: "0:32", desc: "High-energy product spot — bold, brisk, brand-forward." },
+    { title: "Wildlife Documentary", tag: "Narration", time: "1:04", desc: "Measured, cinematic pacing for a nature feature." },
+    { title: "The Long Road Home", tag: "Audiobook", time: "2:18", desc: "Warm literary fiction narration, character-driven." },
+    { title: "Onboarding Module 3", tag: "Corporate", time: "0:47", desc: "Clear, friendly instructional tone for e-learning." },
+    { title: "Terminal 2 Boarding", tag: "Announcement", time: "0:15", desc: "Crisp, authoritative public-address delivery." },
   ];
 
-  const demoList = document.getElementById('demoList');
+  const list = document.getElementById('demo-list');
+  demos.forEach((d, i) => {
+    const bars = Array.from({length: 24}, (_, j) => {
+      const h = 8 + Math.round(Math.sin(j * 1.3 + i) * 6 + 8);
+      return `<span class="bar" style="height:${Math.max(6,h)}px; animation-delay:${(j*0.06).toFixed(2)}s"></span>`;
+    }).join('');
 
-  demos.forEach((d) => {
     const card = document.createElement('div');
-    card.className = 'card-hover glass rounded-2xl p-6 flex flex-col gap-5';
+    card.className = "glass-card glass rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-5";
     card.innerHTML = `
-      <div class="flex items-center justify-between">
-        <span class="inline-flex items-center gap-2 rounded-full border border-violet/30 bg-violet/10 px-3 py-1 text-[11px] font-semibold tracking-wide uppercase text-violetbright">
-          <i data-lucide="${d.icon}" style="width:12px;height:12px"></i> ${d.tag}
-        </span>
-        <span class="text-mute text-xs font-medium">${d.time}</span>
-      </div>
+      <button class="play-btn shrink-0 flex h-14 w-14 items-center justify-center rounded-full bg-neon-500 hover:bg-neon-400 text-navy-950 btn-scale" aria-label="Play ${d.title}" data-index="${i}">
+        <i data-lucide="play" class="play-icon h-5 w-5 translate-x-[1px]"></i>
+      </button>
 
-      <h4 class="font-display font-semibold text-base sm:text-lg">${d.title}</h4>
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <h3 class="font-display text-lg text-bone truncate">${d.title}</h3>
+          <span class="text-[10px] uppercase tracking-widest text-neon-400 border border-neon-500/30 rounded-full px-2 py-0.5">${d.tag}</span>
+        </div>
+        <p class="mt-1 text-xs text-bone/45 truncate">${d.desc}</p>
 
-      <div class="flex items-center gap-4">
-        <button class="play-btn btn-scale shrink-0 flex h-12 w-12 items-center justify-center rounded-full bg-bone text-ink hover:bg-white transition-colors">
-          <i data-lucide="play" class="play-icon" style="width:18px;height:18px"></i>
-        </button>
-
-        <div class="flex-1">
-          <div class="wave paused" data-wave></div>
-          <div class="mt-2 h-1 rounded-full bg-panel2 overflow-hidden">
-            <div class="prog-fill h-full bg-gradient-to-r from-violet to-cyan" style="width:0%"></div>
-          </div>
+        <div class="mt-3 flex items-center gap-3">
+          <div class="wave-bars paused h-8 items-end flex-1 overflow-hidden" aria-hidden="true">${bars}</div>
+          <span class="text-[11px] tabular-nums text-bone/40 shrink-0">${d.time}</span>
         </div>
       </div>
     `;
-    demoList.appendChild(card);
-
-    const waveEl = card.querySelector('[data-wave]');
-    for(let i=0;i<26;i++){
-      const bar = document.createElement('span');
-      bar.className = 'bar';
-      const h = 4 + Math.random()*16;
-      bar.style.height = h+'px';
-      bar.style.animationDelay = (Math.random()*1.2)+'s';
-      waveEl.appendChild(bar);
-    }
-
-    const playBtn = card.querySelector('.play-btn');
-    const playIcon = card.querySelector('.play-icon');
-    const fill = card.querySelector('.prog-fill');
-    let playing = false, progress = 0, timer = null;
-
-    playBtn.addEventListener('click', () => {
-      document.querySelectorAll('.play-btn[data-active="true"]').forEach(btn => {
-        if(btn !== playBtn) btn.click();
-      });
-
-      playing = !playing;
-      playBtn.dataset.active = playing ? "true" : "false";
-      waveEl.classList.toggle('playing', playing);
-      waveEl.classList.toggle('paused', !playing);
-      playIcon.setAttribute('data-lucide', playing ? 'pause' : 'play');
-      lucide.createIcons();
-
-      if(playing){
-        timer = setInterval(() => {
-          progress += 1.2;
-          if(progress >= 100){
-            progress = 0;
-            playing = false;
-            playBtn.dataset.active = "false";
-            waveEl.classList.remove('playing');
-            waveEl.classList.add('paused');
-            playIcon.setAttribute('data-lucide','play');
-            lucide.createIcons();
-            clearInterval(timer);
-          }
-          fill.style.width = progress + '%';
-        }, 90);
-      } else {
-        clearInterval(timer);
-      }
-    });
+    list.appendChild(card);
   });
 
-  /* copy to clipboard */
-  const toast = document.getElementById('toast');
-  const toastText = document.getElementById('toastText');
-  let toastTimer;
+  lucide.createIcons();
 
-  document.querySelectorAll('.copy-btn').forEach(btn => {
+  // demo play/pause toggle (visual only — wire real <audio> src per card as needed)
+  let activePlayer = null;
+  document.querySelectorAll('.play-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const val = btn.getAttribute('data-copy');
-      navigator.clipboard.writeText(val).then(() => {
-        toastText.textContent = `Copied ${val}`;
-        toast.classList.remove('opacity-0','translate-y-3');
-        toast.classList.add('opacity-100','translate-y-0');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => {
-          toast.classList.add('opacity-0','translate-y-3');
-          toast.classList.remove('opacity-100','translate-y-0');
-        }, 1800);
-      });
+      const card = btn.closest('.glass-card');
+      const waveEl = card.querySelector('.wave-bars');
+      const icon = card.querySelector('.play-icon');
+      const isPlaying = !waveEl.classList.contains('paused');
+
+      if (activePlayer && activePlayer !== card) {
+        activePlayer.querySelector('.wave-bars').classList.add('paused');
+        activePlayer.querySelector('.play-icon').setAttribute('data-lucide', 'play');
+        lucide.createIcons();
+      }
+
+      if (isPlaying) {
+        waveEl.classList.add('paused');
+        icon.setAttribute('data-lucide', 'play');
+        activePlayer = null;
+      } else {
+        waveEl.classList.remove('paused');
+        icon.setAttribute('data-lucide', 'pause');
+        activePlayer = card;
+      }
+      lucide.createIcons();
     });
   });
 
-  /* floating action button */
-  const fabToggle = document.getElementById('fabToggle');
-  const fabMenu = document.getElementById('fabMenu');
-  const fabIcon = document.getElementById('fabIcon');
-  let fabOpen = false;
+  // ---------- Copy to clipboard ----------
+  function copyToClipboard(text, el) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Copied "' + text + '"');
+      const label = el.querySelector('.copy-label');
+      if (label) {
+        const original = label.innerHTML;
+        label.innerHTML = '<i data-lucide="check" class="h-3.5 w-3.5"></i>Copied';
+        lucide.createIcons();
+        setTimeout(() => { label.innerHTML = original; lucide.createIcons(); }, 1800);
+      }
+    }).catch(() => showToast('Copy failed — long-press to copy manually'));
+  }
 
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-text').textContent = msg;
+    toast.classList.remove('hidden');
+    toast.classList.add('flex');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(() => {
+      toast.classList.add('hidden');
+      toast.classList.remove('flex');
+    }, 2200);
+  }
+
+  // ---------- FAB menu ----------
+  const fabToggle = document.getElementById('fab-toggle');
+  const fabMenu = document.getElementById('fab-menu');
   fabToggle.addEventListener('click', () => {
-    fabOpen = !fabOpen;
-    fabMenu.classList.toggle('hidden', !fabOpen);
-    fabMenu.classList.toggle('flex', fabOpen);
-    fabIcon.setAttribute('data-lucide', fabOpen ? 'x' : 'phone-call');
+    const isHidden = fabMenu.classList.contains('hidden');
+    if (isHidden) {
+      fabMenu.classList.remove('hidden');
+      fabMenu.classList.add('flex');
+    } else {
+      fabMenu.classList.add('hidden');
+      fabMenu.classList.remove('flex');
+    }
+    fabToggle.querySelector('i').setAttribute('data-lucide', isHidden ? 'x' : 'phone-call');
     lucide.createIcons();
   });
 
-  /* booking form -> mailto */
-  document.getElementById('bookingForm').addEventListener('submit', (e) => {
+  // ---------- Booking form -> mailto ----------
+  document.getElementById('booking-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const project = document.getElementById('project').value;
-    const message = document.getElementById('message').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const type = document.getElementById('project-type').value;
+    const message = document.getElementById('message').value.trim();
 
-    const subject = encodeURIComponent(`Voiceover Booking Inquiry — ${project}`);
+    const subject = encodeURIComponent(`Voiceover Booking Inquiry — ${type}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nProject type: ${project}\n\nDetails:\n${message}`
+      `Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\nProject details:\n${message}`
     );
     window.location.href = `mailto:vicmasmedia@gmail.com?subject=${subject}&body=${body}`;
+    showToast('Opening your email client…');
   });
-</script>
 
+  // ---------- Hero SVG waveform bars (procedural) ----------
+  (function buildHeroWave(){
+    const svgNS = "http://www.w3.org/2000/svg";
+    const g = document.querySelector('.hero-wave g');
+    const bars = 90;
+    const width = 1200;
+    const gap = width / bars;
+    for (let i = 0; i < bars; i++) {
+      const rect = document.createElementNS(svgNS, 'rect');
+      const h = 20 + Math.abs(Math.sin(i * 0.4)) * 140 + Math.random() * 20;
+      rect.setAttribute('x', (i * gap).toFixed(2));
+      rect.setAttribute('y', (200 - h).toFixed(2));
+      rect.setAttribute('width', Math.max(2, gap * 0.55).toFixed(2));
+      rect.setAttribute('height', h.toFixed(2));
+      rect.setAttribute('rx', '2');
+      rect.style.animationDelay = (i * 0.03) + 's';
+      rect.style.animationDuration = (2 + Math.random()) + 's';
+      g.appendChild(rect);
+    }
+  })();
+</script>
 </body>
 </html>
